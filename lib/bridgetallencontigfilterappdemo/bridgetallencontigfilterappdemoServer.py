@@ -342,6 +342,10 @@ class Application(object):
                              name='bridgetallencontigfilterappdemo.run_bridgetallencontigfilterappdemo',
                              types=[dict])
         self.method_authentication['bridgetallencontigfilterappdemo.run_bridgetallencontigfilterappdemo'] = 'required'  # noqa
+        self.rpc_service.add(impl_bridgetallencontigfilterappdemo.run_bridgetallencontigfilterappdemo_max,
+                             name='bridgetallencontigfilterappdemo.run_bridgetallencontigfilterappdemo_max',
+                             types=[dict])
+        self.method_authentication['bridgetallencontigfilterappdemo.run_bridgetallencontigfilterappdemo_max'] = 'required'  # noqa
         self.rpc_service.add(impl_bridgetallencontigfilterappdemo.status,
                              name='bridgetallencontigfilterappdemo.status',
                              types=[dict])
