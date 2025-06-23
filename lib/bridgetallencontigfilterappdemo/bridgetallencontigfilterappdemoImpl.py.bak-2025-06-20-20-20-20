@@ -24,7 +24,7 @@ class bridgetallencontigfilterappdemo:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "git@github.com:bridgetallen/NEWcontigfilterdemo.git"
-    GIT_COMMIT_HASH = "a60e335cf5dbf63c7e7f06670267146d64ac3526"
+    GIT_COMMIT_HASH = "79488df3f1d5c926944003a35b2c21a282f64d34"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -68,7 +68,7 @@ class bridgetallencontigfilterappdemo:
         # return the results
         return [output]
 
-    def run_bridgetallenContigFilter_max(self, ctx, params):
+    def run_bridgetallencontigfilterappdemo_max(self, ctx, params):
         """
         A variation of the contig filter that filters by both minimum and maximum contig length.
         :param params: instance of mapping from String to unspecified object
@@ -78,12 +78,8 @@ class bridgetallencontigfilterappdemo:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_bridgetallencontigfilterappdemo_max
-        print("Running run_bridgetallenContigFilter_max with", params)
-        output = {
-            'report_name': "TestReport",
-            'report_ref': "12345/67/8"
-        }
         #END run_bridgetallencontigfilterappdemo_max
+
         # At some point might do deeper type checking...
         if not isinstance(output, dict):
             raise ValueError('Method run_bridgetallencontigfilterappdemo_max return value ' +

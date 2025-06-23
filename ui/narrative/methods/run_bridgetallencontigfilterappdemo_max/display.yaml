@@ -15,12 +15,21 @@ suggestions:
             [app3, app4]
 
 parameters:
-    parameter_1:
+    assembly_ref:
         ui-name: |
             Assembly
         short-hint: |
             The assembly to filter (will be overwritten)
-
+    min_length:
+        ui-name: |
+            Min Length Threshold
+        short-hint: |
+            All contigs below this length will be removed
+    max_length:
+        ui-name: |
+            Maximum Contig Length
+        short-hint: |
+            All contigs above this length will be removed
 
 description : |
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar efficitur felis, quis tincidunt sem congue at. Vivamus ornare feugiat faucibus. Fusce tincidunt mattis nunc, nec varius purus convallis quis. Nulla facilisi. In at magna dolor. Suspendisse sit amet felis at arcu auctor dapibus vitae pharetra dui. Nam semper mi quis tortor fermentum mollis. Donec a arcu pharetra, rutrum dolor vitae, rutrum mauris. Donec ornare fringilla sagittis. Nam laoreet est in elementum malesuada. Vestibulum id mi eget urna hendrerit feugiat. Donec et ultrices nulla. Phasellus diam eros, dapibus at tempus nec, semper vel ante.</p>

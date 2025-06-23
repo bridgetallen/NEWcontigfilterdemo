@@ -55,13 +55,25 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
     def test_your_method(self):
         # Prepare test objects in workspace if needed using
-        # self.getWsClient().save_objects({'workspace': self.getWsName(),
-        #                                  'objects': []})
+        # self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': []})
         #
         # Run your method by
         # ret = self.getImpl().your_method(self.getContext(), parameters...)
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
+        pass  # You can remove this when you add real test code
+
+    def test_run_bridgetallenContigFilter_max(self):
+        ref = "79/16/1"
+        result = self.serviceImpl.run_bridgetallenContigFilter_max(self.ctx, {
+            'workspace_name': self.wsName,
+            'assembly_ref': ref,
+            'min_length': 100,
+            'max_length': 1000000
+        })
+        print(result)
+        # TODO -- assert some things (later)
+
         ret = self.serviceImpl.run_bridgetallencontigfilterappdemo(self.ctx, {'workspace_name': self.wsName,
                                                              'parameter_1': 'Hello World!'})
