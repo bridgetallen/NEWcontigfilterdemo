@@ -66,7 +66,7 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
 
     def test_run_bridgetallenContigFilter_max(self):
         ref = "79/16/1"
-        result = self.serviceImpl.run_bridgetallenContigFilter_max(self.ctx, {
+        result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, {
             'workspace_name': self.wsName,
             'assembly_ref': ref,
             'min_length': 100,
