@@ -65,8 +65,8 @@ class bridgetallencontigfilterappdemo:
         if not isinstance(output, dict):
             raise ValueError('Method run_bridgetallencontigfilterappdemo return value ' +
                              'output is not type dict as required.')
-        # return the results
-        return [output]
+    # return the results
+    return [output]
 
     def run_bridgetallenContigFilter_max(self, ctx, params):
         """
@@ -78,24 +78,45 @@ class bridgetallencontigfilterappdemo:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_bridgetallencontigfilterappdemo_max
+
+        for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
+            if name not in params:
+                raise ValueError(f'Parameter "{name}" is required but missing')
+
+        if not isinstance(params['min_length'], int) or params['min_length'] < 0:
+            raise ValueError('Min length must be a non-negative integer')
+
+        if not isinstance(params['max_length'], int) or params['max_length'] < 0:
+            raise ValueError('Max length must be a non-negative integer')
+
+        if not isinstance(params['assembly_ref'], str) or not params['assembly_ref']:
+            raise ValueError('Pass in a valid assembly reference string')
+
         print("Running run_bridgetallenContigFilter_max with", params)
+
         output = {
             'report_name': "TestReport",
             'report_ref': "12345/67/8"
         }
+
         #END run_bridgetallencontigfilterappdemo_max
         # At some point might do deeper type checking...
         if not isinstance(output, dict):
-            raise ValueError('Method run_bridgetallencontigfilterappdemo_max return value ' +
+            raise ValueError('Method run_bridgetallencontigfilterappdemo_max return value '
                              'output is not type dict as required.')
+
         # return the results
         return [output]
+
     def status(self, ctx):
         #BEGIN_STATUS
-        returnVal = {'state': "OK",
-                     'message': "",
-                     'version': self.VERSION,
-                     'git_url': self.GIT_URL,
-                     'git_commit_hash': self.GIT_COMMIT_HASH}
+        returnVal = {
+            'state': "OK",
+            'message': "",
+            'version': self.VERSION,
+            'git_url': self.GIT_URL,
+            'git_commit_hash': self.GIT_COMMIT_HASH
+        }
         #END_STATUS
         return [returnVal]
+
