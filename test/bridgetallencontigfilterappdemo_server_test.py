@@ -30,13 +30,13 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
         # it'll result in a NoneType error
         cls.ctx = MethodContext(None)
         cls.ctx.update({'token': token,
-                        'user_id': user_id,
-                        'provenance': [
-                            {'service': 'bridgetallencontigfilterappdemo',
-                             'method': 'please_never_use_it_in_production',
-                             'method_params': []
-                             }],
-                        'authenticated': 1})
+            'user_id': user_id,
+            'provenance': [
+                {'service': 'bridgetallencontigfilterappdemo',
+                    'method': 'please_never_use_it_in_production',
+                    'method_params': []
+                    }],
+                'authenticated': 1})
         cls.wsURL = cls.cfg['workspace-url']
         cls.wsClient = Workspace(cls.wsURL)
         cls.serviceImpl = bridgetallencontigfilterappdemo(cls.cfg)
@@ -64,16 +64,39 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
         # self.assertEqual(ret[...], ...) or other unittest methods
         pass  # You can remove this when you add real test code
 
-    def test_run_bridgetallenContigFilter_max(self):
+    def test_run_bridgetallencontigfilterappdemo_max(self):
         ref = "79/16/1"
         result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, {
             'workspace_name': self.wsName,
             'assembly_ref': ref,
             'min_length': 100,
             'max_length': 1000000
-        })
-        print(result)
+            })
+    def test_invalid_params(self):
+        impl = self.serviceImpl
+        ctx = self.ctx
+        ws = self.wsName
+        # Missing assembly ref
+        with self.assertRaises(ValueError):
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws,
+                'min_length': 100, 'max_length': 1000000})
+        # Missing min length
+        with self.assertRaises(ValueError):
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, { 
+                'max_length': 1000000})
+        # Min length is negative
+        with self.assertRaises(ValueError):
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                'min_length': -1, 'max_length': 1000000})
+        # Min length is wrong type
+        with self.assertRaises(ValueError):
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                'min_length': 'x', 'max_length': 1000000})
+        # Assembly ref is wrong type
+        with self.assertRaises(ValueError):
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 1,
+                'min_length': 1, 'max_length': 1000000})
         # TODO -- assert some things (later)
 
         ret = self.serviceImpl.run_bridgetallencontigfilterappdemo(self.ctx, {'workspace_name': self.wsName,
-                                                             'parameter_1': 'Hello World!'})
+            'parameter_1': 'Hello World!'})
