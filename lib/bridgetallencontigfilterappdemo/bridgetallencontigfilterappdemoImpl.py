@@ -2,6 +2,7 @@
 #BEGIN_HEADER
 import logging
 import os
+from installed_clients.AssemblyUtilClient import AssemblyUtil
 
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
@@ -78,6 +79,14 @@ class bridgetallencontigfilterappdemo:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_bridgetallencontigfilterappdemo_max
+        required_params = ['workspace_name', 'assembly_ref', 'min_length', 'max_length']
+        for param in required_params:
+            if param not in params:
+                raise ValueError(f"Missing required parameter: {param}")
+
+        assembly_util = AssemblyUtil(self.callback_url)
+        fasta_file = assembly_util.get_assembly_as_fasta({'ref': params['assembly_ref']})
+        print(fasta_file)
 
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
             if name not in params:

@@ -8,6 +8,7 @@ from bridgetallencontigfilterappdemo.bridgetallencontigfilterappdemoImpl import 
 from bridgetallencontigfilterappdemo.bridgetallencontigfilterappdemoServer import MethodContext
 from bridgetallencontigfilterappdemo.authclient import KBaseAuth as _KBaseAuth
 
+from installed_clients.baseclient import ServerError
 from installed_clients.WorkspaceClient import Workspace
 
 
@@ -82,18 +83,18 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
                 'min_length': 100, 'max_length': 1000000})
         # Missing min length
         with self.assertRaises(ValueError):
-            impl.run_bridgetallencontigfilterappdemo_max(ctx, { 
-                'max_length': 1000000})
+            impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws,
+                'min_length': 100, 'max_length': 1000000})
         # Min length is negative
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ServerError):
             impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
                 'min_length': -1, 'max_length': 1000000})
         # Min length is wrong type
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ServerError):
             impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
                 'min_length': 'x', 'max_length': 1000000})
         # Assembly ref is wrong type
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ServerError):
             impl.run_bridgetallencontigfilterappdemo_max(ctx, {'workspace_name': ws, 'assembly_ref': 1,
                 'min_length': 1, 'max_length': 1000000})
         # TODO -- assert some things (later)
