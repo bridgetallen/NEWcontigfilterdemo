@@ -95,7 +95,6 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
             'max_length': 4000000
         }
         result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, params)
-        print("result[0]:", result[0])
         self.assertEqual(result[0]['n_total'], 2)
         self.assertEqual(result[0]['n_remaining'], 1)
 

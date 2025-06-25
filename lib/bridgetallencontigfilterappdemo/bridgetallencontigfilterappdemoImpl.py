@@ -109,6 +109,23 @@ class bridgetallencontigfilterappdemo:
             'n_total': n_total,
             'n_remaining': n_remaining
         }
+        # Underneath your loop that filters contigs:
+        # Create a file to hold the filtered data
+        workspace_name = params['workspace_name']
+        filtered_path = os.path.join(self.shared_folder, 'filtered.fasta')
+        SeqIO.write(good_contigs, filtered_path, 'fasta')
+        # Upload the filtered data to the workspace
+        new_ref = assembly_util.save_assembly_from_fasta({
+            'file': {'path': filtered_path},
+            'workspace_name': workspace_name,
+            'assembly_name': fasta_file['assembly_name']
+        })
+        output = {
+            'n_total': n_total,
+            'n_remaining': n_remaining,
+            'filtered_assembly_ref': new_ref
+        }
+        #END run_{username}ContigFilter_max
 
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
             if name not in params:
