@@ -93,12 +93,16 @@
             "report_ref"
           ],
           "target_property": "report_ref"
-        }
+        },
+	{
+        "narrative_system_variable": "workspace",
+        "target_property": "workspace_name"
+    	}
       ]
     }
   },
   "widgets": {
-    "input": "kbaseDefaultInput",
-    "output": "kbaseDefaultOutput"
+    "input": null,
+    "output": "no-display"
   }
 }
