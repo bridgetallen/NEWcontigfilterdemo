@@ -125,6 +125,34 @@ class bridgetallencontigfilterappdemo:
             'n_remaining': n_remaining,
             'filtered_assembly_ref': new_ref
         }
+        # Create an output summary message for the report
+        text_message = "".join([
+            'Filtered assembly to ',
+            str(n_remaining),
+            ' contigs out of ',
+            str(n_total)
+        ])
+        # Data for creating the report, referencing the assembly we uploaded
+        report_data = {
+            'objects_created': [
+                {'ref': new_ref, 'description': 'Filtered contigs'}
+            ],
+            'text_message': text_message
+        }
+        # Initialize the report
+        kbase_report = KBaseReport(self.callback_url)
+        report = kbase_report.create({
+            'report': report_data,
+            'workspace_name': workspace_name
+        })
+        # Return the report reference and name in our results
+        output = {
+            'report_ref': report['ref'],
+            'report_name': report['name'],
+            'n_total': n_total,
+            'n_remaining': n_remaining,
+            'filtered_assembly_ref': new_ref
+        }
         #END run_{username}ContigFilter_max
 
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
