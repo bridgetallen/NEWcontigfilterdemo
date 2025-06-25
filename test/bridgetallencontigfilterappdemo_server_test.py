@@ -73,6 +73,32 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
             'min_length': 100,
             'max_length': 1000000
             })
+    def test_run_bridgetallencontigfilterappdemo_test_min(self):
+        ref = "79/16/1"
+        params = {
+            'workspace_name': self.wsName,
+            'assembly_ref': ref,
+            'min_length': 200000,
+            'max_length': 6000000
+        }
+        result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, params)
+        print("result[0]:", result[0])
+        self.assertEqual(result[0]['n_total'], 2)
+        self.assertEqual(result[0]['n_remaining'], 1)
+
+    def test_run_bridgetallencontigfilterappdemo_test_max(self):
+        ref = "79/16/1"
+        params = {
+            'workspace_name': self.wsName,
+            'assembly_ref': ref,
+            'min_length': 100000,
+            'max_length': 4000000
+        }
+        result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, params)
+        print("result[0]:", result[0])
+        self.assertEqual(result[0]['n_total'], 2)
+        self.assertEqual(result[0]['n_remaining'], 1)
+
     def test_invalid_params(self):
         impl = self.serviceImpl
         ctx = self.ctx

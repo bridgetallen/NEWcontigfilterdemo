@@ -126,8 +126,8 @@ class bridgetallencontigfilterappdemo:
         print("Running run_bridgetallenContigFilter_max with", params)
 
         output = {
-            'report_name': "TestReport",
-            'report_ref': "12345/67/8"
+            'n_total': n_total,
+            'n_remaining': n_remaining
         }
 
         #END run_bridgetallencontigfilterappdemo_max
