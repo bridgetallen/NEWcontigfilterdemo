@@ -2,6 +2,7 @@
 #BEGIN_HEADER
 import logging
 import os
+from Bio import SeqIO
 from installed_clients.AssemblyUtilClient import AssemblyUtil
 
 from installed_clients.KBaseReportClient import KBaseReport
@@ -87,6 +88,27 @@ class bridgetallencontigfilterappdemo:
         assembly_util = AssemblyUtil(self.callback_url)
         fasta_file = assembly_util.get_assembly_as_fasta({'ref': params['assembly_ref']})
         print(fasta_file)
+
+        # Parse the downloaded file in FASTA format
+        parsed_assembly = SeqIO.parse(fasta_file['path'], 'fasta')
+        min_length = params['min_length']
+        max_length = params['max_length']
+
+        # Keep a list of contigs greater than min_length
+        good_contigs = []
+        # total contigs regardless of length
+        n_total = 0
+        # total contigs over the min_length
+        n_remaining = 0
+        for record in parsed_assembly:
+            n_total += 1
+            if len(record.seq) >= min_length and len(record.seq) <= max_length:
+                good_contigs.append(record)
+                n_remaining += 1
+        output = {
+            'n_total': n_total,
+            'n_remaining': n_remaining
+        }
 
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
             if name not in params:
