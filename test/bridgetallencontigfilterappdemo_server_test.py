@@ -97,6 +97,9 @@ class bridgetallencontigfilterappdemoTest(unittest.TestCase):
         result = self.serviceImpl.run_bridgetallencontigfilterappdemo_max(self.ctx, params)
         self.assertEqual(result[0]['n_total'], 2)
         self.assertEqual(result[0]['n_remaining'], 1)
+        self.assertTrue(len(result[0]['filtered_assembly_ref']))
+        self.assertTrue(len(result[0]['report_name']))
+        self.assertTrue(len(result[0]['report_ref']))
 
     def test_invalid_params(self):
         impl = self.serviceImpl

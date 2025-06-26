@@ -153,7 +153,6 @@ class bridgetallencontigfilterappdemo:
             'n_remaining': n_remaining,
             'filtered_assembly_ref': new_ref
         }
-        #END run_{username}ContigFilter_max
 
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
             if name not in params:
@@ -169,11 +168,6 @@ class bridgetallencontigfilterappdemo:
             raise ValueError('Pass in a valid assembly reference string')
 
         print("Running run_bridgetallenContigFilter_max with", params)
-
-        output = {
-            'n_total': n_total,
-            'n_remaining': n_remaining
-        }
 
         #END run_bridgetallencontigfilterappdemo_max
         # At some point might do deeper type checking...
